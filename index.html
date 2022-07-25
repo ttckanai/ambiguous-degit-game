@@ -141,7 +141,9 @@
     function prediction() {
       const imageData = getImageData();
       const accuracyScores = getAccuracyScores(imageData);
+      // console.log(accuracyScores);
       const maxAccuracy = accuracyScores.indexOf(Math.max.apply(null, accuracyScores));
+      // const secondAccuracy = accuracyScores.indexOf(accuracyScores.sort()[1]);
 
       const elements = document.querySelectorAll(".accuracy");
       elements.forEach(el => {
@@ -150,7 +152,8 @@
         if (maxAccuracy === rowIndex) {
           el.parentNode.classList.add('is-selected');
         }
-        el.innerText = accuracyScores[rowIndex];
+        // el.innerText = accuracyScores[rowIndex];
+        el.innerText = Math.round(accuracyScores[rowIndex]*1000)/1000;
       })
     }
 
