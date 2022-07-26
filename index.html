@@ -8,20 +8,36 @@
 </head>
 <body>
   <div class="container">
-    <h1 class="title">MNIST recognition with TensorFlow.js</h1>
-    <h2 class="subtitle">Using Keras pre-trained model (CNN)</h2>
+    <h1 class="title">あいまい数字ゲーム</h1>
+    <!-- <h2 class="subtitle">Using Keras pre-trained model (CNN)</h2> -->
     <div class="columns is-centered">
+      <div class="column is-3">
+        <script>
+          var data = [0,1,2,3,4,5,6,7,8,9];
+          // var getData = choose_at_random(data);
+          // console.log(getData);
+          function choose_at_random(arrayData) {
+              var arrayIndex = Math.floor(Math.random() * arrayData.length);
+              // return arrayData[arrayIndex];
+              document.write(arrayData[arrayIndex]);
+          }
+        </script>
+        <h2 class="subtitle">メイン数字</h2>
+        <p class="title"><script>choose_at_random(data)</script></p>
+        <h2 class="subtitle">サブ数字</h2>
+        <p class="title"><script>choose_at_random(data)</script></p>
+      </div>
       <div class="column is-narrow">
         <canvas id="draw-area" width="280" height="280" style="border: 2px solid;"></canvas>
         <div class="field is-grouped">
           <p class="control">
             <a id="predict-button" class="button is-link is-loading" onclick="prediction()">
-              Prediction
+              実行
             </a>
           </p>
           <p class="control">
             <a class="button" onclick="reset()">
-              Reset
+              やり直し
             </a>
           </p>
         </div>
@@ -30,11 +46,11 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Number</th>
-              <th>Accuracy</th>
+              <th>数字</th>
+              <th>確率</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody style="font-family: monospace">
             <tr>
               <th>0</th>
               <td class="accuracy" data-row-index="0">-</td>
@@ -153,7 +169,8 @@
           el.parentNode.classList.add('is-selected');
         }
         // el.innerText = accuracyScores[rowIndex];
-        el.innerText = Math.round(accuracyScores[rowIndex]*1000)/1000;
+        // el.innerText = Math.round(accuracyScores[rowIndex]*1000)/1000;
+        el.innerText = (100*accuracyScores[rowIndex]).toFixed(1) + "%";
       })
     }
 
